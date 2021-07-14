@@ -3,20 +3,27 @@ import ToggleButton from "./ToggleButton";
 
 function AddAlarm(props) {
   const { id, alarm, showDelete, handleDelete } = props;
+
   const [toggle, setToggle] = useState("-translate-x-full");
   const [sideBar, setSideBar] = useState(true);
-  const [timeInput, setTimeInput] = useState("00 : 00");
-  const [secInput, setSecInput] = useState("AM");
-  const [repeatInput, setRepeatInput] = useState("Never");
+  const [hourInput, setHourInput] = useState(alarm.alarmHour);
+  const [minInput, setMinInput] = useState(alarm.alarmMin);
+  const [sectionInput, setSectionInput] = useState(alarm.alarmSection);
+  const [repeatInput, setRepeatInput] = useState(alarm.repeat);
 
-  const onTimeChange = (e) => {
+  const onHourChange = (e) => {
     e.preventDefault();
-    setTimeInput(e.target.value);
+    setHourInput(e.target.value);
+  };
+
+  const onMinChange = (e) => {
+    e.preventDefault();
+    setMinInput(e.target.value);
   };
 
   const onSectionChange = (e) => {
     e.preventDefault();
-    setSecInput(e.target.value);
+    setSectionInput(e.target.value);
   };
 
   const onRepeatChange = (e) => {
@@ -30,14 +37,16 @@ function AddAlarm(props) {
       setToggle("translate-x-0");
     } else {
       setToggle("-translate-x-full");
-      setTimeInput("00:00");
-      setSecInput("AM");
+      setHourInput("00");
+      setMinInput("00");
+      setSectionInput("AM");
     }
   };
 
   const editAlarm = () => {
-    alarm.alarmTime = timeInput;
-    alarm.alarmSection = secInput;
+    alarm.alarmHour = hourInput;
+    alarm.alarmMin = minInput;
+    alarm.alarmSection = sectionInput;
     alarm.repeat = repeatInput;
   };
 
@@ -45,7 +54,9 @@ function AddAlarm(props) {
     <div className="items-center rounded-lg my-3 mx-4 px-4 py-2 border-2 border-solid border-gray-500">
       <div className="flex flex-row w-full justify-start items-center">
         <div className="flex" onClick={handleSideBar}>
-          <p className="text-md w-16">{alarm.alarmTime}</p>{" "}
+          <p className="text-md w-16">
+            {alarm.alarmHour} : {alarm.alarmMin}
+          </p>{" "}
           <span className="pt-2 w-5 text-xs ml-1 mr-10">
             {alarm.alarmSection}
           </span>
@@ -68,19 +79,26 @@ function AddAlarm(props) {
       <div
         className={`px-4 absolute left-0 bottom-16 z-50 ${toggle} transform transition duration-200 ease-in-out`}
       >
-        <div className="left-10 h-48 w-52 p-4 rounded-lg flex flex-col bg-gray-800">
-          <label className="text-xs my-1 ">Time : (HH:MM)</label>
+        <div className="left-10 h-60 w-52 p-4 rounded-lg flex flex-col bg-gray-800">
+          <label className="text-xs my-1 ">Hour :</label>
           <input
             className="px-2 text-xs text-gray-800 rounded-md"
             type="text"
-            onChange={onTimeChange}
-            value={timeInput}
+            onChange={onHourChange}
+            value={hourInput}
+          ></input>
+          <label className="text-xs my-1 ">Minute :</label>
+          <input
+            className="px-2 text-xs text-gray-800 rounded-md"
+            type="text"
+            onChange={onMinChange}
+            value={minInput}
           ></input>
           <label className="text-xs my-1">AM/PM:</label>
           <select
             className="px-2 text-gray-800 text-xs rounded-md"
             onChange={onSectionChange}
-            value={secInput}
+            value={sectionInput}
           >
             <option value="AM">AM</option>
             <option value="PM">PM</option>
@@ -98,7 +116,7 @@ function AddAlarm(props) {
           <div className="flex justify-between my-2">
             <button
               onClick={() => {
-                editAlarm(timeInput, secInput, repeatInput);
+                editAlarm();
                 handleSideBar();
               }}
               className="my-2 w-16 h-7 items-center justify-center flex text-center mx-auto font-bold uppercase border-white border-2 rounded-lg p-2 text-xs text-white"

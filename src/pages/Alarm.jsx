@@ -4,26 +4,33 @@ import AlarmHeader from "../components/AlarmHeader";
 
 function Alarm() {
   const [time, setTime] = useState({
-    alarmTime: "08:00",
+    alarmHour: "08",
+    alarmMin: "00",
     alarmSection: "AM",
-    repeat: "每天",
+    repeat: "Everyday",
   });
   const [showDelete, setShowDelete] = useState(false);
   const [alarms, setAlarms] = useState([time]);
   const [sideBar, setSideBar] = useState(true);
   const [toggle, setToggle] = useState("-translate-x-full");
-  const [timeInput, setTimeInput] = useState("00 : 00");
-  const [secInput, setSecInput] = useState("AM");
+  const [hourInput, setHourInput] = useState("08");
+  const [minInput, setMinInput] = useState("00");
+  const [sectionInput, setSectionInput] = useState("AM");
   const [repeatInput, setRepeatInput] = useState("Never");
 
-  const onTimeChange = (e) => {
+  const onHourChange = (e) => {
     e.preventDefault();
-    setTimeInput(e.target.value);
+    setHourInput(e.target.value);
+  };
+
+  const onMinChange = (e) => {
+    e.preventDefault();
+    setMinInput(e.target.value);
   };
 
   const onSectionChange = (e) => {
     e.preventDefault();
-    setSecInput(e.target.value);
+    setSectionInput(e.target.value);
   };
 
   const onRepeatChange = (e) => {
@@ -56,8 +63,9 @@ function Alarm() {
 
   const addNewAlarm = () => {
     let newAlarm = {};
-    newAlarm.alarmTime = timeInput;
-    newAlarm.alarmSection = secInput;
+    newAlarm.alarmHour = hourInput;
+    newAlarm.alarmMin = minInput;
+    newAlarm.alarmSection = sectionInput;
     newAlarm.repeat = repeatInput;
 
     setAlarms([...alarms, newAlarm]);
@@ -85,19 +93,26 @@ function Alarm() {
       <div
         className={`px-4 absolute left-0 bottom-16 z-50 ${toggle} transform transition duration-200 ease-in-out`}
       >
-        <div className="left-10 h-48 w-52 p-4 rounded-lg flex flex-col bg-gray-800">
-          <label className="text-xs my-1 ">Time : (HH:MM)</label>
+        <div className="left-10 h-60 w-52 p-4 rounded-lg flex flex-col bg-gray-800">
+          <label className="text-xs my-1 ">Hour :</label>
           <input
             className="px-2 text-xs text-gray-800 rounded-md"
-            type="text"
-            onChange={onTimeChange}
-            value={timeInput}
+            type="number"
+            onChange={onHourChange}
+            value={hourInput}
+          ></input>
+          <label className="text-xs my-1 ">Minute :</label>
+          <input
+            className="px-2 text-xs text-gray-800 rounded-md"
+            type="number"
+            onChange={onMinChange}
+            value={minInput}
           ></input>
           <label className="text-xs my-1">AM/PM:</label>
           <select
             className="px-2 text-gray-800 text-xs rounded-md"
             onChange={onSectionChange}
-            value={secInput}
+            value={sectionInput}
           >
             <option value="AM">AM</option>
             <option value="PM">PM</option>
@@ -114,10 +129,10 @@ function Alarm() {
           </select>
           <button
             onClick={() => {
-              addNewAlarm(timeInput, secInput, repeatInput);
+              addNewAlarm(hourInput, minInput, repeatInput);
               handleSideBar();
             }}
-            className="my-2 w-16 h-7 items-center justify-center flex text-center mx-auto font-bold uppercase border-white border-2 rounded-lg p-2 text-xs text-white"
+            className="mt-4 w-16 h-7 items-center justify-center flex text-center mx-auto font-bold uppercase border-white border-2 rounded-lg p-2 text-xs text-white"
             type="text"
           >
             Add
