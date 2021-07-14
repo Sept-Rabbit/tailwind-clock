@@ -69,6 +69,7 @@ module.exports = {
     animation: {
       none: "none",
       spin: "spin 1s linear infinite",
+      "spin-once": "spin 2s linear",
       ping: "ping 1s cubic-bezier(0, 0, 0.2, 1) infinite",
       pulse: "pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite",
       bounce: "bounce 1s infinite",
@@ -659,6 +660,7 @@ module.exports = {
       45: "45deg",
       90: "90deg",
       180: "180deg",
+      360: "360deg",
     },
     saturate: {
       0: "0",

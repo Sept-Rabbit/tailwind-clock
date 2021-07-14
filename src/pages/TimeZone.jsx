@@ -101,11 +101,11 @@ function TimeZone() {
   };
 
   return (
-    <div>
+    <div className="min-h-full py-1">
       <header className="sticky top-0 z-50">
         <TimeZoneHeader displayDelete={displayDelete} />
       </header>
-      <div className="relative h-98">
+      <div className="relative h-full">
         <img
           src="https://upload.cc/i1/2021/07/06/CkRzLm.png"
           className="h-36 w-full bg-cover bg-no-repeat bg-top bg-timezone-image"
@@ -113,7 +113,7 @@ function TimeZone() {
 
         {/* ----- Display Timezone -----*/}
 
-        <div className="px-4 mt-5 overflow-y-auto h-48">
+        <div className="px-4 mt-5 overflow-auto h-64">
           {cityList.map((c, index) => {
             return (
               <AddTimeZone
@@ -135,7 +135,7 @@ function TimeZone() {
         <div
           className={`px-4 absolute top-60 z-50 ${toggle} transform transition duration-200 ease-in-out`}
         >
-          <div className="left-10 h-32 w-52 p-4 rounded-lg flex flex-col bg-gray-700">
+          <div className="left-10 h-32 w-52 p-4 rounded-lg flex flex-col bg-gray-800">
             <label className="text-xs">Enter City in English</label>
             <input
               onChange={onChange}
@@ -155,6 +155,9 @@ function TimeZone() {
             </button>
           </div>
         </div>
+
+        {/* ----- Floating Button -----*/}
+
         <div className="absolute right-5 bottom-1">
           <button
             onClick={handleAddCity}

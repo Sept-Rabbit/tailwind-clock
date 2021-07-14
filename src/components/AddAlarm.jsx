@@ -1,17 +1,10 @@
 import React, { useState } from "react";
-import AddAlarm from "../components/AddAlarm";
-import AlarmHeader from "../components/AlarmHeader";
+import ToggleButton from "./ToggleButton";
 
-function Alarm() {
-  const [time, setTime] = useState({
-    alarmTime: "08:00",
-    alarmSection: "AM",
-    repeat: "每天",
-  });
-  const [showDelete, setShowDelete] = useState(false);
-  const [alarms, setAlarms] = useState([time]);
-  const [sideBar, setSideBar] = useState(true);
+function AddAlarm(props) {
+  const { id, alarm, showDelete, handleDelete } = props;
   const [toggle, setToggle] = useState("-translate-x-full");
+  const [sideBar, setSideBar] = useState(true);
   const [timeInput, setTimeInput] = useState("00 : 00");
   const [secInput, setSecInput] = useState("AM");
   const [repeatInput, setRepeatInput] = useState("Never");
@@ -31,18 +24,6 @@ function Alarm() {
     setRepeatInput(e.target.value);
   };
 
-  const displayDelete = () => {
-    setShowDelete(!showDelete);
-  };
-
-  const handleDelete = (id) => {
-    const filteredItems = alarms
-      .slice(0, id)
-      .concat(alarms.slice(id + 1, alarms.length));
-
-    setAlarms(filteredItems);
-  };
-
   const handleSideBar = () => {
     setSideBar(!sideBar);
     if (sideBar) {
@@ -54,32 +35,33 @@ function Alarm() {
     }
   };
 
-  const addNewAlarm = () => {
-    let newAlarm = {};
-    newAlarm.alarmTime = timeInput;
-    newAlarm.alarmSection = secInput;
-    newAlarm.repeat = repeatInput;
-
-    setAlarms([...alarms, newAlarm]);
+  const editAlarm = () => {
+    alarm.alarmTime = timeInput;
+    alarm.alarmSection = secInput;
+    alarm.repeat = repeatInput;
   };
 
   return (
-    <div className="relative">
-      <header className="sticky top-0 z-50">
-        <AlarmHeader displayDelete={displayDelete} />
-      </header>
-      <div className="h-98">
-        {alarms.map((a, index) => {
-          return (
-            <AddAlarm
-              key={index}
-              id={index}
-              alarm={a}
-              showDelete={showDelete}
-              handleDelete={handleDelete}
-            />
-          );
-        })}
+    <div className="items-center rounded-lg my-3 mx-4 px-4 py-2 border-2 border-solid border-gray-500">
+      <div
+        onClick={handleSideBar}
+        className="flex flex-1 flex-row w-full justify-start items-center"
+      >
+        <p className="text-md w-16">{alarm.alarmTime}</p>{" "}
+        <span className="pt-2 w-5 text-xs ml-1 mr-10">
+          {alarm.alarmSection}
+        </span>
+        <p className="text-sm w-12 mr-16">
+          {alarm.repeat === "Never" ? null : alarm.repeat}
+        </p>
+        <ToggleButton />
+        {showDelete ? (
+          <div className="text-lg w-1/8 ml-5">
+            <button onClick={() => handleDelete(id)}>
+              <i className="fas fa-trash-alt"></i>
+            </button>
+          </div>
+        ) : null}
       </div>
 
       <div
@@ -114,7 +96,7 @@ function Alarm() {
           </select>
           <button
             onClick={() => {
-              addNewAlarm(timeInput, secInput, repeatInput);
+              editAlarm(timeInput, secInput, repeatInput);
               handleSideBar();
             }}
             className="my-2 w-16 h-7 items-center justify-center flex text-center mx-auto font-bold uppercase border-white border-2 rounded-lg p-2 text-xs text-white"
@@ -124,28 +106,8 @@ function Alarm() {
           </button>
         </div>
       </div>
-
-      <div className="absolute right-5 bottom-1">
-        <button
-          onClick={handleSideBar}
-          className="p-0 w-12 h-12 bg-red-600 rounded-full hover:bg-blue-700 active:shadow-lg mouse shadow transition ease-in duration-200 focus:outline-none"
-        >
-          <svg
-            viewBox="0 0 20 20"
-            enableBackground="new 0 0 20 20"
-            className="w-6 h-6 inline-block"
-          >
-            <path
-              fill="#FFFFFF"
-              d="M16,10c0,0.553-0.048,1-0.601,1H11v4.399C11,15.951,10.553,16,10,16c-0.553,0-1-0.049-1-0.601V11H4.601
-                                    C4.049,11,4,10.553,4,10c0-0.553,0.049-1,0.601-1H9V4.601C9,4.048,9.447,4,10,4c0.553,0,1,0.048,1,0.601V9h4.399
-                                    C15.952,9,16,9.447,16,10z"
-            />
-          </svg>
-        </button>
-      </div>
     </div>
   );
 }
 
-export default Alarm;
+export default AddAlarm;

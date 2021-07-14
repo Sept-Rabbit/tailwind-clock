@@ -1,66 +1,20 @@
-import { TemporaryDisplayObject } from "pixi.js";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import TimerHeader from "../components/TimerHeader";
+import AddTimer from "../components/AddTimer";
 
 function Timer() {
+  const [sideBar, setSideBar] = useState(true);
+  const [toggle, setToggle] = useState("-translate-x-full");
   const [timer, setTimer] = useState({
     hour: "00",
     minute: "02",
     second: "00",
     counter: 120,
-    isActive: false,
   });
-  const [newTimer, setNewTimer] = useState({
-    hour: "00",
-    minute: "00",
-    second: "00",
-    counter: 0,
-  });
+
+  const [timers, setTimers] = useState([timer]);
   const [minInput, setMinInput] = useState(0);
   const [secInput, setSecInput] = useState(0);
-  const [timers, setTimers] = useState([]);
-  const [sideBar, setSideBar] = useState(true);
-  const [toggle, setToggle] = useState("-translate-x-full");
-
-  useEffect(() => {
-    setTimers([...timers, timer]);
-  }, []);
-
-  console.log(timers);
-
-  useEffect(() => {
-    let intervalId;
-
-    if (timer.isActive) {
-      intervalId = setInterval(() => {
-        const secondCounter = timer.counter % 60;
-        const minuteCounter = Math.floor(timer.counter / 60);
-
-        const computedSecond =
-          String(secondCounter).length === 1
-            ? `0${secondCounter}`
-            : secondCounter;
-        const computedMinute =
-          String(minuteCounter).length === 1
-            ? `0${minuteCounter}`
-            : minuteCounter;
-
-        setTimer({
-          hour: "00",
-          minute: computedMinute,
-          second: computedSecond,
-          counter: timer.counter--,
-        });
-      }, 1000);
-    }
-    return () => clearInterval(intervalId);
-  }, [timer.isActive, timer.counter]);
-
-  const stopTimer = () => {
-    setIsActive(false);
-    setCounter(120);
-    setTimer({ hour: "00", minute: "02", second: "00" });
-  };
 
   const onMinChange = (e) => {
     e.preventDefault();
@@ -72,18 +26,8 @@ function Timer() {
     setSecInput(e.target.value);
   };
 
-  const handleSideBar = () => {
-    setSideBar(!sideBar);
-    if (sideBar) {
-      setToggle("translate-x-0");
-    } else {
-      setToggle("-translate-x-full");
-      setMinInput(0);
-      setSecInput(0);
-    }
-  };
-
-  const AddTimer = (minInput, secInput) => {
+  const AddNewTimer = (minInput, secInput) => {
+    let newTimer = {};
     if (minInput !== 0 || secInput !== 0) {
       const zeroPad = (num, places) => {
         const numZeroes = places - num.toString().length + 1;
@@ -103,11 +47,20 @@ function Timer() {
       newTimer.minute = tempMinInput;
       newTimer.second = tempSecInput;
       (newTimer.counter = minInput * 60 + secInput),
-        (newTimer.isActive = false),
         setTimers([...timers, newTimer]);
     }
   };
-  console.log(timers);
+
+  const handleSideBar = () => {
+    setSideBar(!sideBar);
+    if (sideBar) {
+      setToggle("translate-x-0");
+    } else {
+      setToggle("-translate-x-full");
+      setMinInput(0);
+      setSecInput(0);
+    }
+  };
 
   return (
     <div className="relative">
@@ -118,34 +71,20 @@ function Timer() {
         <div className="items-center my-3 mx-auto mx-4 px-4 py-2 flex flex-col justify-center">
           {timers.map((t, index) => {
             return (
-              <div
+              <AddTimer
                 key={index}
-                className="my-3 w-5/6 h-24 p-2 rounded-lg border-2 border-solid border-gray-500"
-              >
-                <p className="text-2xl text-center">
-                  {t.hour} : {t.minute} : {t.second}
-                </p>{" "}
-                <div className="flex flex-row justify-around">
-                  <button
-                    onClick={() => setIsActive(!t.isActive)}
-                    className="mt-3 bg-indigo-500 w-20 rounded-lg p-1 m-1 text-center text-white text-sm"
-                  >
-                    {t.isActive ? "Pause" : "Start"}
-                  </button>
-                  <button
-                    onClick={stopTimer}
-                    className="mt-3 bg-indigo-500 w-20 rounded-lg p-1 m-1 text-center text-white text-sm"
-                  >
-                    Reset
-                  </button>
-                </div>
-              </div>
+                id={index}
+                h={t.hour}
+                m={t.minute}
+                s={t.second}
+                c={t.counter}
+              />
             );
           })}
           <div
             className={`px-4 absolute left-0 bottom-16 z-50 ${toggle} transform transition duration-200 ease-in-out`}
           >
-            <div className="left-10 h-40 w-52 p-4 rounded-lg flex flex-col bg-gray-700">
+            <div className="left-10 h-40 w-52 p-4 rounded-lg flex flex-col bg-gray-800">
               <label className="text-xs my-1 ">Minutes:</label>
               <input
                 className="px-2 text-xs text-gray-800 rounded-md"
@@ -164,7 +103,7 @@ function Timer() {
               ></input>
               <button
                 onClick={() => {
-                  AddTimer(minInput, secInput);
+                  AddNewTimer(minInput, secInput);
                   handleSideBar();
                 }}
                 className="my-2 w-16 h-7 items-center justify-center flex text-center mx-auto font-bold uppercase border-white border-2 rounded-lg p-2 text-xs text-white"
