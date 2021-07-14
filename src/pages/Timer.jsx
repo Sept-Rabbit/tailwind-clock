@@ -113,7 +113,7 @@ function Timer() {
               </button>
             </div>
           </div>
-          <div className="absolute right-5 bottom-24">
+          <div className="absolute right-5 bottom-2">
             <button
               onClick={handleSideBar}
               className="p-0 w-12 h-12 bg-red-600 rounded-full hover:bg-blue-700 active:shadow-lg mouse shadow transition ease-in duration-200 focus:outline-none"
