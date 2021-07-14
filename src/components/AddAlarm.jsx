@@ -43,25 +43,26 @@ function AddAlarm(props) {
 
   return (
     <div className="items-center rounded-lg my-3 mx-4 px-4 py-2 border-2 border-solid border-gray-500">
-      <div
-        onClick={handleSideBar}
-        className="flex flex-1 flex-row w-full justify-start items-center"
-      >
-        <p className="text-md w-16">{alarm.alarmTime}</p>{" "}
-        <span className="pt-2 w-5 text-xs ml-1 mr-10">
-          {alarm.alarmSection}
-        </span>
-        <p className="text-sm w-12 mr-16">
-          {alarm.repeat === "Never" ? null : alarm.repeat}
-        </p>
-        <ToggleButton />
-        {showDelete ? (
-          <div className="text-lg w-1/8 ml-5">
-            <button onClick={() => handleDelete(id)}>
-              <i className="fas fa-trash-alt"></i>
-            </button>
-          </div>
-        ) : null}
+      <div className="flex flex-row w-full justify-start items-center">
+        <div className="flex" onClick={handleSideBar}>
+          <p className="text-md w-16">{alarm.alarmTime}</p>{" "}
+          <span className="pt-2 w-5 text-xs ml-1 mr-10">
+            {alarm.alarmSection}
+          </span>
+          <p className="text-sm w-12 mr-16">
+            {alarm.repeat === "Never" ? null : alarm.repeat}
+          </p>
+        </div>
+        <div>
+          <ToggleButton />
+          {showDelete ? (
+            <div className="text-lg w-1/8 ml-5">
+              <button onClick={() => handleDelete(id)}>
+                <i className="fas fa-trash-alt"></i>
+              </button>
+            </div>
+          ) : null}
+        </div>
       </div>
 
       <div
@@ -94,16 +95,27 @@ function AddAlarm(props) {
             <option value="Everyday">Everyday</option>
             <option value="WorkingDay">Working Day</option>
           </select>
-          <button
-            onClick={() => {
-              editAlarm(timeInput, secInput, repeatInput);
-              handleSideBar();
-            }}
-            className="my-2 w-16 h-7 items-center justify-center flex text-center mx-auto font-bold uppercase border-white border-2 rounded-lg p-2 text-xs text-white"
-            type="text"
-          >
-            Add
-          </button>
+          <div className="flex justify-between my-2">
+            <button
+              onClick={() => {
+                editAlarm(timeInput, secInput, repeatInput);
+                handleSideBar();
+              }}
+              className="my-2 w-16 h-7 items-center justify-center flex text-center mx-auto font-bold uppercase border-white border-2 rounded-lg p-2 text-xs text-white"
+              type="text"
+            >
+              Edit
+            </button>
+            <button
+              onClick={() => {
+                handleSideBar();
+              }}
+              className="my-2 w-16 h-7 items-center justify-center flex text-center mx-auto font-bold uppercase border-white border-2 rounded-lg p-2 text-xs text-white"
+              type="text"
+            >
+              Cancel
+            </button>
+          </div>
         </div>
       </div>
     </div>
