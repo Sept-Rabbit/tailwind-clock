@@ -53,18 +53,18 @@ function AddAlarm(props) {
   return (
     <div className="items-center rounded-lg my-3 mx-4 px-4 py-2 border-2 border-solid border-gray-500">
       <div className="flex flex-row w-full justify-start items-center">
-        <div className="flex" onClick={handleSideBar}>
+        <div className="flex items-center" onClick={handleSideBar}>
           <p className="text-md w-16">
             {alarm.alarmHour} : {alarm.alarmMin}
           </p>{" "}
           <span className="pt-2 w-5 text-xs ml-1 mr-10">
             {alarm.alarmSection}
           </span>
-          <p className="text-sm w-12 mr-16">
+          <p className="text-sm w-12 mr-14">
             {alarm.repeat === "Never" ? null : alarm.repeat}
           </p>
         </div>
-        <div>
+        <div className="flex items-center">
           <ToggleButton />
           {showDelete ? (
             <div className="text-lg w-1/8 ml-5">

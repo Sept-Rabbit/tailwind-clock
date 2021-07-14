@@ -15,6 +15,7 @@ function Timer() {
   const [timers, setTimers] = useState([timer]);
   const [minInput, setMinInput] = useState(0);
   const [secInput, setSecInput] = useState(0);
+  const [showDelete, setShowDelete] = useState(false);
 
   const onMinChange = (e) => {
     e.preventDefault();
@@ -62,10 +63,22 @@ function Timer() {
     }
   };
 
+  const displayDelete = () => {
+    setShowDelete(!showDelete);
+  };
+
+  const handleDelete = (id) => {
+    const filteredItems = timers
+      .slice(0, id)
+      .concat(timers.slice(id + 1, timers.length));
+
+    setTimers(filteredItems);
+  };
+
   return (
     <div className="relative">
       <header>
-        <TimerHeader />
+        <TimerHeader displayDelete={displayDelete} />
       </header>
       <div className="h-98">
         <div className="items-center my-3 mx-auto mx-4 px-4 py-2 flex flex-col justify-center">
@@ -78,6 +91,8 @@ function Timer() {
                 m={t.minute}
                 s={t.second}
                 c={t.counter}
+                showDelete={showDelete}
+                handleDelete={handleDelete}
               />
             );
           })}

@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect } from "react";
 
 function AddTimer(props) {
-  const { id, h, m, s, c } = props;
+  const { id, h, m, s, c, showDelete, handleDelete } = props;
   const [second, setSecond] = useState(s);
   const [minute, setMinute] = useState(m);
   const [hour, setHour] = useState(h);
@@ -42,7 +42,7 @@ function AddTimer(props) {
   };
 
   return (
-    <div className="my-3 w-5/6 h-24 p-2 rounded-lg border-2 border-solid border-gray-500">
+    <div className="relative my-3 w-5/6 h-24 p-2 rounded-lg border-2 border-solid border-gray-500">
       <p className="text-2xl text-center">
         {minute} : {second}
       </p>
@@ -60,6 +60,13 @@ function AddTimer(props) {
           Reset
         </button>
       </div>
+      {showDelete ? (
+        <div className="absolute top-0 right-2 text-lg w-1/8 ml-5">
+          <button onClick={() => handleDelete(id)}>
+            <i className="fas fa-trash-alt"></i>
+          </button>
+        </div>
+      ) : null}
     </div>
   );
 }
