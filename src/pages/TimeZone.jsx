@@ -42,7 +42,6 @@ function TimeZone() {
     );
     const weatherData = await weatherResponse.json();
     let currentWeather = weatherData.weather[0].main;
-    console.log(currentWeather);
 
     userCity.weather = currentWeather;
 
@@ -102,7 +101,7 @@ function TimeZone() {
 
   return (
     <div className="min-h-full py-1">
-      <header className="sticky top-0 z-50">
+      <header>
         <TimeZoneHeader displayDelete={displayDelete} />
       </header>
       <div className="relative h-full">
@@ -158,7 +157,7 @@ function TimeZone() {
 
         {/* ----- Floating Button -----*/}
 
-        <div className="absolute right-5 bottom-1">
+        <div className="absolute right-5 bottom-2">
           <button
             onClick={handleAddCity}
             className="p-0 w-12 h-12 bg-red-600 rounded-full hover:bg-blue-700 active:shadow-lg mouse shadow transition ease-in duration-200 focus:outline-none"

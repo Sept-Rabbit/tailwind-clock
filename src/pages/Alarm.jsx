@@ -65,7 +65,7 @@ function Alarm() {
 
   return (
     <div className="relative">
-      <header className="sticky top-0 z-50">
+      <header>
         <AlarmHeader displayDelete={displayDelete} />
       </header>
       <div className="h-98">
@@ -125,7 +125,7 @@ function Alarm() {
         </div>
       </div>
 
-      <div className="absolute right-5 bottom-1">
+      <div className="absolute right-5 bottom-24">
         <button
           onClick={handleSideBar}
           className="p-0 w-12 h-12 bg-red-600 rounded-full hover:bg-blue-700 active:shadow-lg mouse shadow transition ease-in duration-200 focus:outline-none"
