@@ -73,11 +73,11 @@ function Alarm() {
   };
 
   return (
-    <div className="relative">
+    <div className="relative mb-3">
       <header>
         <AlarmHeader displayDelete={displayDelete} />
       </header>
-      <div className="overflow-y-auto h-98">
+      <div className="overflow-y-auto py-3 h-98">
         {alarms.map((a, index) => {
           return (
             <AddAlarm

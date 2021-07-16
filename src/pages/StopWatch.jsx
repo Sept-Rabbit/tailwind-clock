@@ -81,9 +81,11 @@ function StopWatch() {
       <div className="h-98">
         <div className="items-center my-3 mx-auto mx-4 px-4 py-2 flex flex-col justify-center">
           <div className="my-3 w-5/6 h-24 p-2 rounded-lg border-2 border-solid border-gray-500">
-            <p className="text-2xl w-48 mx-auto text-center">
-              {timer.minute} : {timer.second} : {timer.misecond}
-            </p>
+            <div className="text-2xl grid grid-cols-5 w-48 mx-auto text-center">
+              <div>{timer.minute}</div> : <div>{timer.second}</div> :
+              <div>{timer.misecond}</div>
+            </div>
+
             <div className="flex flex-row justify-around">
               <button
                 onClick={() => setIsActive(!isActive)}

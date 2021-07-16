@@ -52,7 +52,7 @@ function Footer() {
           className={`${alarmActive} flex-col flex justify-center text-center items-center`}
         >
           <i className="my-1 far fa-alarm-clock"></i>
-          <span className="w-16">鬧鐘</span>
+          <span className="w-20">鬧鐘</span>
         </button>
       </div>
       <div className="hover:bg-gray-600 text-center text-base p-2">
@@ -61,7 +61,7 @@ function Footer() {
           className={`${timezoneActive} flex-col flex justify-center text-center items-center`}
         >
           <i className="my-1 far fa-clock"></i>
-          <span className="w-16">世界時鐘</span>
+          <span className="w-20">世界時鐘</span>
         </button>
       </div>
       <div className="hover:bg-gray-600 text-center text-base p-2">
@@ -70,7 +70,7 @@ function Footer() {
           className={`${stopWatchActive} flex-col flex justify-center text-center items-center`}
         >
           <i className="my-1 far fa-stopwatch"></i>
-          <span className="w-16">碼表</span>
+          <span className="w-20">碼表</span>
         </button>
       </div>
       <div className="hover:bg-gray-600 text-center text-base p-2">
@@ -79,7 +79,7 @@ function Footer() {
           className={`${timerActive} flex-col flex justify-center text-center items-center`}
         >
           <i className="my-1 far fa-hourglass-end"></i>
-          <span className="w-16">計時器</span>
+          <span className="w-20">計時器</span>
         </button>
       </div>
     </div>
