@@ -37,9 +37,9 @@ function AddAlarm(props) {
       setToggle("translate-x-0");
     } else {
       setToggle("-translate-x-full");
-      setHourInput("00");
-      setMinInput("00");
-      setSectionInput("AM");
+      // setHourInput("00");
+      //   setMinInput("00");
+      //   setSectionInput("AM");
     }
   };
 
@@ -60,14 +60,14 @@ function AddAlarm(props) {
           <span className="pt-2 w-5 text-xs ml-1 mr-10">
             {alarm.alarmSection}
           </span>
-          <p className="text-sm w-12 mr-14">
+          <p className="text-sm w-12 mr-12">
             {alarm.repeat === "Never" ? null : alarm.repeat}
           </p>
         </div>
         <div className="flex items-center">
           <ToggleButton />
           {showDelete ? (
-            <div className="text-lg w-1/8 ml-5">
+            <div className="text-lg w-1/8 ml-5 ">
               <button onClick={() => handleDelete(id)}>
                 <i className="fas fa-trash-alt"></i>
               </button>
@@ -86,7 +86,9 @@ function AddAlarm(props) {
               onChange={onHourChange}
               name="hour"
               className="bg-transparent text-gray-900 text-sm appearance-none outline-none"
+              value={hourInput}
             >
+              <option value="00">00</option>
               <option value="01">01</option>
               <option value="02">02</option>
               <option value="03">03</option>
@@ -105,6 +107,7 @@ function AddAlarm(props) {
               onChange={onMinChange}
               name="minute"
               className="bg-transparent text-sm text-gray-900 appearance-none outline-none mr-4"
+              value={minInput}
             >
               <option value="00">00</option>
               <option value="05">05</option>

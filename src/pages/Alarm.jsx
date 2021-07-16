@@ -56,8 +56,9 @@ function Alarm() {
       setToggle("translate-x-0");
     } else {
       setToggle("-translate-x-full");
-      setTimeInput("00:00");
-      setSecInput("AM");
+      setHourInput("00");
+      setMinInput("00");
+      setSectionInput("AM");
     }
   };
 
@@ -76,7 +77,7 @@ function Alarm() {
       <header>
         <AlarmHeader displayDelete={displayDelete} />
       </header>
-      <div className="h-98">
+      <div className="overflow-y-auto h-98">
         {alarms.map((a, index) => {
           return (
             <AddAlarm
@@ -100,7 +101,9 @@ function Alarm() {
               onChange={onHourChange}
               name="hour"
               className="bg-transparent text-gray-900 text-sm appearance-none outline-none"
+              value={hourInput}
             >
+              <option value="00">00</option>
               <option value="01">01</option>
               <option value="02">02</option>
               <option value="03">03</option>
@@ -119,6 +122,7 @@ function Alarm() {
               onChange={onMinChange}
               name="minute"
               className="bg-transparent text-sm text-gray-900 appearance-none outline-none mr-4"
+              value={minInput}
             >
               <option value="00">00</option>
               <option value="05">05</option>
@@ -158,17 +162,27 @@ function Alarm() {
             </select>
           </div>
 
-          <div className="flex justify-between"></div>
-          <button
-            onClick={() => {
-              addNewAlarm(hourInput, minInput, repeatInput);
-              handleSideBar();
-            }}
-            className="mt-4 w-16 h-7 items-center justify-center flex text-center mx-auto font-bold uppercase border-white border-2 rounded-lg p-2 text-xs text-white"
-            type="text"
-          >
-            Add
-          </button>
+          <div className="flex justify-between my-2">
+            <button
+              onClick={() => {
+                addNewAlarm();
+                handleSideBar();
+              }}
+              className="my-2 w-16 h-7 items-center justify-center flex text-center mx-auto font-bold uppercase border-white border-2 rounded-lg p-2 text-xs text-white"
+              type="text"
+            >
+              Add
+            </button>
+            <button
+              onClick={() => {
+                handleSideBar();
+              }}
+              className="my-2 w-16 h-7 items-center justify-center flex text-center mx-auto font-bold uppercase border-white border-2 rounded-lg p-2 text-xs text-white"
+              type="text"
+            >
+              Cancel
+            </button>
+          </div>
         </div>
       </div>
 
