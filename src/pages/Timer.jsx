@@ -96,26 +96,55 @@ function Timer() {
               />
             );
           })}
+
+          {/*------ Add Window ------*/}
           <div
             className={`px-4 absolute left-0 bottom-16 z-50 ${toggle} transform transition duration-200 ease-in-out`}
           >
-            <div className="left-10 h-40 w-52 p-4 rounded-lg flex flex-col bg-gray-800">
-              <label className="text-xs my-1 ">Minutes:</label>
-              <input
-                className="px-2 text-xs text-gray-800 rounded-md"
-                type="number"
-                onChange={onMinChange}
-                value={minInput}
-                min={0}
-              ></input>
-              <label className="text-xs my-1">Seconds:</label>
-              <input
-                className="px-2 text-gray-800 text-xs rounded-md"
-                type="number"
-                onChange={onSecChange}
-                value={secInput}
-                min={0}
-              ></input>
+            <div className="left-10 h-32 w-52 p-4 rounded-lg flex flex-col bg-gray-800">
+              <label className="text-sm mx-2 my-1">Time:</label>
+              <div className="my-1 p-1 text-sm w-40 bg-white rounded-lg mx-auto">
+                <div className="flex justify-evenly">
+                  <select
+                    onChange={onMinChange}
+                    name="minute"
+                    className="bg-transparent text-gray-900 text-sm appearance-none outline-none"
+                  >
+                    <option value="01">01</option>
+                    <option value="02">02</option>
+                    <option value="03">03</option>
+                    <option value="04">04</option>
+                    <option value="05">05</option>
+                    <option value="06">06</option>
+                    <option value="07">07</option>
+                    <option value="08">08</option>
+                    <option value="09">09</option>
+                    <option value="10">10</option>
+                    <option value="11">11</option>
+                    <option value="12">12</option>
+                    <option value="13">13</option>
+                    <option value="14">14</option>
+                    <option value="15">15</option>
+                    <option value="16">16</option>
+                    <option value="17">17</option>
+                    <option value="18">18</option>
+                    <option value="19">19</option>
+                    <option value="20">20</option>
+                  </select>
+                  <span className="text-sm mr-3 text-gray-900"> : </span>
+                  <select
+                    onChange={onSecChange}
+                    name="second"
+                    className="bg-transparent text-sm text-gray-900 appearance-none outline-none mr-4"
+                  >
+                    <option value="00">00</option>
+                    <option value="15">15</option>
+                    <option value="30">30</option>
+                    <option value="45">45</option>
+                  </select>
+                </div>
+              </div>
+
               <button
                 onClick={() => {
                   AddNewTimer(minInput, secInput);
@@ -154,3 +183,22 @@ function Timer() {
 }
 
 export default Timer;
+
+{
+  /* <label className="text-xs my-1 ">Minutes:</label>
+              <input
+                className="px-2 text-xs text-gray-800 rounded-md"
+                type="number"
+                onChange={onMinChange}
+                value={minInput}
+                min={0}
+              ></input>
+              <label className="text-xs my-1">Seconds:</label>
+              <input
+                className="px-2 text-gray-800 text-xs rounded-md"
+                type="number"
+                onChange={onSecChange}
+                value={secInput}
+                min={0}
+              ></input> */
+}

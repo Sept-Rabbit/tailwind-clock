@@ -94,39 +94,71 @@ function Alarm() {
         className={`px-4 absolute left-0 bottom-16 z-50 ${toggle} transform transition duration-200 ease-in-out`}
       >
         <div className="left-10 h-60 w-52 p-4 rounded-lg flex flex-col bg-gray-800">
-          <label className="text-xs my-1 ">Hour :</label>
-          <input
-            className="px-2 text-xs text-gray-800 rounded-md"
-            type="number"
-            onChange={onHourChange}
-            value={hourInput}
-          ></input>
-          <label className="text-xs my-1 ">Minute :</label>
-          <input
-            className="px-2 text-xs text-gray-800 rounded-md"
-            type="number"
-            onChange={onMinChange}
-            value={minInput}
-          ></input>
-          <label className="text-xs my-1">AM/PM:</label>
-          <select
-            className="px-2 text-gray-800 text-xs rounded-md"
-            onChange={onSectionChange}
-            value={sectionInput}
-          >
-            <option value="AM">AM</option>
-            <option value="PM">PM</option>
-          </select>
-          <label className="text-xs my-1">Frequency:</label>
-          <select
-            className="px-2 text-gray-800 text-xs rounded-md"
-            onChange={onRepeatChange}
-            value={repeatInput}
-          >
-            <option value="Never">Never</option>
-            <option value="Everyday">Everyday</option>
-            <option value="WorkingDay">Working Day</option>
-          </select>
+          <label className="text-sm mb-1">Time:</label>
+          <div className="flex my-1 bg-white h-10 rounded-lg justify-evenly">
+            <select
+              onChange={onHourChange}
+              name="hour"
+              className="bg-transparent text-gray-900 text-sm appearance-none outline-none"
+            >
+              <option value="01">01</option>
+              <option value="02">02</option>
+              <option value="03">03</option>
+              <option value="04">04</option>
+              <option value="05">05</option>
+              <option value="06">06</option>
+              <option value="07">07</option>
+              <option value="08">08</option>
+              <option value="09">09</option>
+              <option value="10">10</option>
+              <option value="11">11</option>
+              <option value="12">12</option>
+            </select>
+            <span className="text-sm mr-3 text-gray-900"> : </span>
+            <select
+              onChange={onMinChange}
+              name="minute"
+              className="bg-transparent text-sm text-gray-900 appearance-none outline-none mr-4"
+            >
+              <option value="00">00</option>
+              <option value="05">05</option>
+              <option value="10">10</option>
+              <option value="15">15</option>
+              <option value="20">20</option>
+              <option value="25">25</option>
+              <option value="30">30</option>
+              <option value="35">35</option>
+              <option value="40">40</option>
+              <option value="45">45</option>
+              <option value="50">50</option>
+              <option value="55">55</option>
+            </select>
+          </div>
+          <div className="h-10 flex flex-col">
+            <label className="text-sm my-1">AM/PM:</label>
+            <select
+              className="py-1 px-2 my-1 text-gray-900 text-xs rounded-md"
+              onChange={onSectionChange}
+              value={sectionInput}
+            >
+              <option value="AM">AM</option>
+              <option value="PM">PM</option>
+            </select>
+          </div>
+          <div className="h-10 flex flex-col mt-6 mb-2">
+            <label className="text-sm">Frequency:</label>
+            <select
+              className="px-2 py-1 my-1 text-gray-900 text-xs rounded-md"
+              onChange={onRepeatChange}
+              value={repeatInput}
+            >
+              <option value="Never">Never</option>
+              <option value="Everyday">Everyday</option>
+              <option value="WorkingDay">Working Day</option>
+            </select>
+          </div>
+
+          <div className="flex justify-between"></div>
           <button
             onClick={() => {
               addNewAlarm(hourInput, minInput, repeatInput);
