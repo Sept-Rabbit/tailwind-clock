@@ -61,7 +61,6 @@ function StopWatch() {
       newLap.second = timer.second;
       newLap.misecond = timer.misecond;
       setLaps([...laps, newLap]);
-      console.log(laps);
     } else {
       setTimer({
         minute: "00",
