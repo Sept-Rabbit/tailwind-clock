@@ -49,13 +49,13 @@ function AddTimer(props) {
       <div className="flex flex-row justify-around">
         <button
           onClick={() => setIsActive(!isActive)}
-          className="mt-3 bg-indigo-500 w-20 rounded-lg p-1 m-1 text-center text-white text-sm"
+          className="mt-3 bg-indigo-500 w-20 h-8 rounded-lg p-1 m-1 text-center text-white text-sm"
         >
           {isActive || counter <= 0 ? "Pause" : "Start"}
         </button>
         <button
           onClick={stopTimer}
-          className="mt-3 bg-indigo-500 w-20 rounded-lg p-1 m-1 text-center text-white text-sm"
+          className="mt-3 bg-indigo-500 w-20 h-8 rounded-lg p-1 m-1 text-center text-white text-sm"
         >
           Reset
         </button>

@@ -99,13 +99,13 @@ function StopWatch() {
             <div className="flex flex-row justify-around">
               <button
                 onClick={() => setIsActive(!isActive)}
-                className={`${dangerbtn} mt-3 bg-indigo-500 w-20 rounded-lg p-1 m-1 text-center text-white text-sm`}
+                className={`${dangerbtn} mt-3 h-8 bg-indigo-500 w-20 rounded-lg p-1 m-1 text-center text-white text-sm`}
               >
                 {isActive ? "Pause" : "Start"}
               </button>
               <button
                 onClick={addLap}
-                className={`${lapbtn} mt-3 border-2 border-indigo-500 w-20 rounded-lg p-1 m-1 text-center text-white text-sm`}
+                className={`${lapbtn} mt-3 h-8 border-2 border-indigo-500 w-20 rounded-lg p-1 m-1 text-center text-white text-sm`}
               >
                 {isActive ? "Lap" : "Reset"}
               </button>
