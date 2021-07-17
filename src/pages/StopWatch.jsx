@@ -8,11 +8,13 @@ function StopWatch() {
     minute: "00",
     second: "00",
     misecond: "00",
+    order: 1,
   });
   const [counter, setCounter] = useState(0);
   const [laps, setLaps] = useState([]);
   const [dangerbtn, setDangerbtn] = useState("");
   const [lapbtn, setLapbtn] = useState("false");
+  const [lapOrder, setLapOrder] = useState(1);
 
   const countTime = () => {
     const misecondCounter = counter % 60;
@@ -32,6 +34,7 @@ function StopWatch() {
       minute: computedMinute,
       second: computedSecond,
       misecond: computedMiSecond,
+      lapOrder: lapOrder,
     });
 
     setCounter((prev) => prev + 1);
@@ -60,17 +63,25 @@ function StopWatch() {
       newLap.minute = timer.minute;
       newLap.second = timer.second;
       newLap.misecond = timer.misecond;
-      setLaps([...laps, newLap]);
+
+      setLapOrder((prev) => prev + 1);
+      console.log(lapOrder);
+      newLap.lapOrder = lapOrder;
+      setLaps([newLap, ...laps]);
     } else {
+      setLapOrder(1);
       setTimer({
         minute: "00",
         second: "00",
         misecond: "00",
+        order: 1,
       });
       setCounter(0);
       setLaps([]);
     }
   };
+
+  console.log(laps);
 
   return (
     <div className="relative">
@@ -111,6 +122,7 @@ function StopWatch() {
                   s={t.second}
                   ms={t.misecond}
                   c={t.counter}
+                  order={t.lapOrder}
                 />
               );
             })}
