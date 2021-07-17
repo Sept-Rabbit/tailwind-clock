@@ -81,7 +81,7 @@ function Timer() {
         <TimerHeader displayDelete={displayDelete} />
       </header>
       <div className="h-98">
-        <div className="items-center my-3 mx-auto mx-4 px-4 py-2 flex flex-col justify-center">
+        <div className="items-center mx-auto mx-4 px-4 py-2 flex flex-col justify-center">
           {timers.map((t, index) => {
             return (
               <AddTimer

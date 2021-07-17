@@ -100,11 +100,11 @@ function TimeZone() {
   };
 
   return (
-    <div className="min-h-full py-1">
+    <div className="min-h-full">
       <header>
         <TimeZoneHeader displayDelete={displayDelete} />
       </header>
-      <div className="relative h-full">
+      <div className="relative h-98">
         <img
           src="https://upload.cc/i1/2021/07/06/CkRzLm.png"
           className="h-36 w-full bg-cover bg-no-repeat bg-top bg-timezone-image"

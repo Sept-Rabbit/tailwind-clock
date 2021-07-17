@@ -73,11 +73,11 @@ function Alarm() {
   };
 
   return (
-    <div className="relative mb-3">
+    <div className="relative h-full">
       <header>
         <AlarmHeader displayDelete={displayDelete} />
       </header>
-      <div className="overflow-y-auto py-3 h-98">
+      <div className="overflow-y-auto h-98">
         {alarms.map((a, index) => {
           return (
             <AddAlarm
@@ -89,121 +89,120 @@ function Alarm() {
             />
           );
         })}
-      </div>
+        <div
+          className={`px-4 absolute left-0 bottom-16 z-50 ${toggle} transform transition duration-200 ease-in-out`}
+        >
+          <div className="left-10 h-60 w-52 p-4 rounded-lg flex flex-col bg-gray-800">
+            <label className="text-sm mb-1">Time:</label>
+            <div className="flex my-1 bg-white h-10 rounded-lg justify-evenly">
+              <select
+                onChange={onHourChange}
+                name="hour"
+                className="bg-transparent text-gray-900 text-sm appearance-none outline-none"
+                value={hourInput}
+              >
+                <option value="00">00</option>
+                <option value="01">01</option>
+                <option value="02">02</option>
+                <option value="03">03</option>
+                <option value="04">04</option>
+                <option value="05">05</option>
+                <option value="06">06</option>
+                <option value="07">07</option>
+                <option value="08">08</option>
+                <option value="09">09</option>
+                <option value="10">10</option>
+                <option value="11">11</option>
+                <option value="12">12</option>
+              </select>
+              <span className="text-sm mr-3 text-gray-900"> : </span>
+              <select
+                onChange={onMinChange}
+                name="minute"
+                className="bg-transparent text-sm text-gray-900 appearance-none outline-none mr-4"
+                value={minInput}
+              >
+                <option value="00">00</option>
+                <option value="05">05</option>
+                <option value="10">10</option>
+                <option value="15">15</option>
+                <option value="20">20</option>
+                <option value="25">25</option>
+                <option value="30">30</option>
+                <option value="35">35</option>
+                <option value="40">40</option>
+                <option value="45">45</option>
+                <option value="50">50</option>
+                <option value="55">55</option>
+              </select>
+            </div>
+            <div className="h-10 flex flex-col">
+              <label className="text-sm my-1">AM/PM:</label>
+              <select
+                className="py-1 px-2 my-1 text-gray-900 text-xs rounded-md"
+                onChange={onSectionChange}
+                value={sectionInput}
+              >
+                <option value="AM">AM</option>
+                <option value="PM">PM</option>
+              </select>
+            </div>
+            <div className="h-10 flex flex-col mt-6 mb-2">
+              <label className="text-sm">Frequency:</label>
+              <select
+                className="px-2 py-1 my-1 text-gray-900 text-xs rounded-md"
+                onChange={onRepeatChange}
+                value={repeatInput}
+              >
+                <option value="Never">Never</option>
+                <option value="Everyday">Everyday</option>
+                <option value="WorkingDay">Working Day</option>
+              </select>
+            </div>
 
-      <div
-        className={`px-4 absolute left-0 bottom-16 z-50 ${toggle} transform transition duration-200 ease-in-out`}
-      >
-        <div className="left-10 h-60 w-52 p-4 rounded-lg flex flex-col bg-gray-800">
-          <label className="text-sm mb-1">Time:</label>
-          <div className="flex my-1 bg-white h-10 rounded-lg justify-evenly">
-            <select
-              onChange={onHourChange}
-              name="hour"
-              className="bg-transparent text-gray-900 text-sm appearance-none outline-none"
-              value={hourInput}
-            >
-              <option value="00">00</option>
-              <option value="01">01</option>
-              <option value="02">02</option>
-              <option value="03">03</option>
-              <option value="04">04</option>
-              <option value="05">05</option>
-              <option value="06">06</option>
-              <option value="07">07</option>
-              <option value="08">08</option>
-              <option value="09">09</option>
-              <option value="10">10</option>
-              <option value="11">11</option>
-              <option value="12">12</option>
-            </select>
-            <span className="text-sm mr-3 text-gray-900"> : </span>
-            <select
-              onChange={onMinChange}
-              name="minute"
-              className="bg-transparent text-sm text-gray-900 appearance-none outline-none mr-4"
-              value={minInput}
-            >
-              <option value="00">00</option>
-              <option value="05">05</option>
-              <option value="10">10</option>
-              <option value="15">15</option>
-              <option value="20">20</option>
-              <option value="25">25</option>
-              <option value="30">30</option>
-              <option value="35">35</option>
-              <option value="40">40</option>
-              <option value="45">45</option>
-              <option value="50">50</option>
-              <option value="55">55</option>
-            </select>
-          </div>
-          <div className="h-10 flex flex-col">
-            <label className="text-sm my-1">AM/PM:</label>
-            <select
-              className="py-1 px-2 my-1 text-gray-900 text-xs rounded-md"
-              onChange={onSectionChange}
-              value={sectionInput}
-            >
-              <option value="AM">AM</option>
-              <option value="PM">PM</option>
-            </select>
-          </div>
-          <div className="h-10 flex flex-col mt-6 mb-2">
-            <label className="text-sm">Frequency:</label>
-            <select
-              className="px-2 py-1 my-1 text-gray-900 text-xs rounded-md"
-              onChange={onRepeatChange}
-              value={repeatInput}
-            >
-              <option value="Never">Never</option>
-              <option value="Everyday">Everyday</option>
-              <option value="WorkingDay">Working Day</option>
-            </select>
-          </div>
-
-          <div className="flex justify-between my-2">
-            <button
-              onClick={() => {
-                addNewAlarm();
-                handleSideBar();
-              }}
-              className="my-2 w-16 h-7 items-center justify-center flex text-center mx-auto font-bold uppercase border-white border-2 rounded-lg p-2 text-xs text-white"
-              type="text"
-            >
-              Add
-            </button>
-            <button
-              onClick={() => {
-                handleSideBar();
-              }}
-              className="my-2 w-16 h-7 items-center justify-center flex text-center mx-auto font-bold uppercase border-white border-2 rounded-lg p-2 text-xs text-white"
-              type="text"
-            >
-              Cancel
-            </button>
+            <div className="flex justify-between my-2">
+              <button
+                onClick={() => {
+                  addNewAlarm();
+                  handleSideBar();
+                }}
+                className="my-2 w-16 h-7 items-center justify-center flex text-center mx-auto font-bold uppercase border-white border-2 rounded-lg p-2 text-xs text-white"
+                type="text"
+              >
+                Add
+              </button>
+              <button
+                onClick={() => {
+                  handleSideBar();
+                }}
+                className="my-2 w-16 h-7 items-center justify-center flex text-center mx-auto font-bold uppercase border-white border-2 rounded-lg p-2 text-xs text-white"
+                type="text"
+              >
+                Cancel
+              </button>
+            </div>
           </div>
         </div>
-      </div>
 
-      <div className="absolute right-5 bottom-2">
-        <button
-          onClick={handleSideBar}
-          className="p-0 w-12 h-12 bg-red-600 rounded-full hover:bg-blue-700 active:shadow-lg mouse shadow transition ease-in duration-200 focus:outline-none"
-        >
-          <svg
-            viewBox="0 0 20 20"
-            enableBackground="new 0 0 20 20"
-            className="w-6 h-6 inline-block"
+        <div className="absolute right-5 bottom-2">
+          <button
+            onClick={handleSideBar}
+            className="p-0 w-12 h-12 bg-red-600 rounded-full hover:bg-blue-700 active:shadow-lg mouse shadow transition ease-in duration-200 focus:outline-none"
           >
-            <path
-              fill="#FFFFFF"
-              d="M16,10c0,0.553-0.048,1-0.601,1H11v4.399C11,15.951,10.553,16,10,16c-0.553,0-1-0.049-1-0.601V11H4.601
+            <svg
+              viewBox="0 0 20 20"
+              enableBackground="new 0 0 20 20"
+              className="w-6 h-6 inline-block"
+            >
+              <path
+                fill="#FFFFFF"
+                d="M16,10c0,0.553-0.048,1-0.601,1H11v4.399C11,15.951,10.553,16,10,16c-0.553,0-1-0.049-1-0.601V11H4.601
                                     C4.049,11,4,10.553,4,10c0-0.553,0.049-1,0.601-1H9V4.601C9,4.048,9.447,4,10,4c0.553,0,1,0.048,1,0.601V9h4.399
                                     C15.952,9,16,9.447,16,10z"
-            />
-          </svg>
-        </button>
+              />
+            </svg>
+          </button>
+        </div>
       </div>
     </div>
   );

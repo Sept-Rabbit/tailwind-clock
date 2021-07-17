@@ -84,12 +84,12 @@ function StopWatch() {
   console.log(laps);
 
   return (
-    <div className="relative">
+    <div className="relative h-full">
       <header>
         <StopWatchHeader />
       </header>
       <div className="h-98">
-        <div className="items-center my-3 mx-auto mx-4 px-4 py-2 flex flex-col justify-center">
+        <div className="items-center mx-auto mx-4 px-4 py-2 flex flex-col justify-center">
           <div className="my-3 w-5/6 h-24 p-2 rounded-lg border-2 border-solid border-gray-500">
             <div className="text-2xl grid grid-cols-5 w-48 mx-auto text-center">
               <div>{timer.minute}</div> : <div>{timer.second}</div> :
