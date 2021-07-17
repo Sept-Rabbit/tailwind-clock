@@ -2,7 +2,6 @@ import React, { useState, useRef, useEffect } from "react";
 
 function AddStopWatch(props) {
   const { id, m, s, ms, c, order } = props;
-  console.log(order);
 
   return (
     <div className="flex justify-between h-7 w-64 my-3 p-2 border-b border-gray-500">
