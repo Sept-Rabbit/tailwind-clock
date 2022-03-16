@@ -53,8 +53,8 @@ function AddAlarm(props) {
   };
 
   return (
-    <div className="items-center px-4 py-2 mx-4 my-3 border-2 border-gray-500 border-solid rounded-lg">
-      <div className="flex flex-row items-center justify-start w-full">
+    <div className="flex items-center justify-center px-4 py-2 my-6 border-2 border-gray-500 border-solid rounded-lg mx-7">
+      <div className="flex flex-row items-center justify-center w-full">
         <div className="flex items-center" onClick={handleSideBar}>
           <p className="w-16 text-md">
             {alarm.alarmHour} : {alarm.alarmMin}

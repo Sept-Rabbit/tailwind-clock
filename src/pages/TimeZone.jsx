@@ -5,7 +5,7 @@ import { keys } from "../../key";
 function TimeZone() {
   const [cityList, setCityList] = useState([]);
   const [sideBar, setSideBar] = useState(true);
-  const [toggle, setToggle] = useState("-translate-x-full");
+  const [toggle, setToggle] = useState("hidden");
   const [searchKey, setSearchKey] = useState("");
   const [showDelete, setShowDelete] = useState(false);
   let userCity = {};
@@ -82,7 +82,7 @@ function TimeZone() {
     if (sideBar) {
       setToggle("translate-x-0");
     } else {
-      setToggle("-translate-x-full");
+      setToggle("hidden");
     }
   };
 
@@ -99,8 +99,8 @@ function TimeZone() {
   };
 
   return (
-    <div className="min-h-full">
-      <div className="relative h-98">
+    <div className="relative min-h-full">
+      <div className="h-full ">
         <img
           src="https://upload.cc/i1/2021/07/06/CkRzLm.png"
           className="w-full bg-top bg-no-repeat bg-cover h-36 bg-timezone-image"
@@ -153,7 +153,7 @@ function TimeZone() {
 
         {/* ----- Floating Button -----*/}
 
-        <div className="absolute right-5 bottom-2">
+        <div className="absolute right-5 bottom-5">
           <button
             onClick={handleAddCity}
             className="w-12 h-12 p-0 transition duration-200 ease-in bg-red-600 rounded-full shadow hover:bg-blue-700 active:shadow-lg mouse focus:outline-none"

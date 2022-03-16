@@ -12,7 +12,7 @@ function Alarm() {
   const [showDelete, setShowDelete] = useState(false);
   const [alarms, setAlarms] = useState([time]);
   const [sideBar, setSideBar] = useState(true);
-  const [toggle, setToggle] = useState("-translate-x-full");
+  const [toggle, setToggle] = useState("hidden");
   const [hourInput, setHourInput] = useState("08");
   const [minInput, setMinInput] = useState("00");
   const [sectionInput, setSectionInput] = useState("AM");
@@ -55,7 +55,7 @@ function Alarm() {
     if (sideBar) {
       setToggle("translate-x-0");
     } else {
-      setToggle("-translate-x-full");
+      setToggle("hidden");
       setHourInput("00");
       setMinInput("00");
       setSectionInput("AM");
@@ -74,8 +74,8 @@ function Alarm() {
 
   return (
     <div className="relative h-full overflow-hidden">
-      <div className="flex flex-1 h-full">
-        <div className="overflow-y-auto">
+      <div className="h-full">
+        <div className="overflow-y-auto ">
           {alarms.map((a, index) => {
             return (
               <AddAlarm
@@ -88,7 +88,7 @@ function Alarm() {
             );
           })}
           <div
-            className={`px-4 absolute bottom-20 left-0 ${toggle} transform transition duration-200 ease-in-out`}
+            className={`px-4 absolute top-20 left-0 ${toggle} transform transition duration-200 ease-in-out`}
           >
             <div className="flex flex-col p-4 bg-gray-800 rounded-lg left-10 h-60 w-52">
               <label className="mb-1 text-sm">Time:</label>
@@ -182,7 +182,7 @@ function Alarm() {
             </div>
           </div>
 
-          <div className="absolute right-5 bottom-2">
+          <div className="absolute right-5 bottom-5">
             <button
               onClick={handleSideBar}
               className="w-12 h-12 p-0 transition duration-200 ease-in bg-red-600 rounded-full shadow hover:bg-blue-700 active:shadow-lg mouse focus:outline-none"

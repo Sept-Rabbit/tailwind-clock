@@ -3,7 +3,7 @@ import AddTimer from "../components/AddTimer";
 
 function Timer() {
   const [sideBar, setSideBar] = useState(true);
-  const [toggle, setToggle] = useState("-translate-x-full");
+  const [toggle, setToggle] = useState("hidden");
   const [timer, setTimer] = useState({
     hour: "00",
     minute: "02",
@@ -41,7 +41,7 @@ function Timer() {
     if (sideBar) {
       setToggle("translate-x-0");
     } else {
-      setToggle("-translate-x-full");
+      setToggle("hidden");
       setMinInput({ value: "02" });
       setSecInput({ value: "00" });
     }
@@ -60,8 +60,8 @@ function Timer() {
   };
 
   return (
-    <div className="relative overflow-y-auto">
-      <div className="flex flex-col items-center justify-center px-4 py-2 mx-auto h-96">
+    <div className="relative min-h-full overflow-y-auto">
+      <div className="flex flex-col items-center justify-center h-full px-4 py-2 mx-auto">
         {timers.map((t, index) => {
           return (
             <AddTimer
@@ -76,7 +76,7 @@ function Timer() {
         })}
 
         <div
-          className={`px-4 absolute left-0 bottom-16 z-50 ${toggle} transform transition duration-200 ease-in-out`}
+          className={`px-4 absolute left-0 top-32 z-50 ${toggle} transform transition duration-200 ease-in-out`}
         >
           <div className="flex flex-col h-32 p-4 bg-gray-800 rounded-lg left-10 w-52">
             <label className="mx-2 my-1 text-sm">Time:</label>
@@ -136,25 +136,25 @@ function Timer() {
             </button>
           </div>
         </div>
-        <div className="absolute right-5 bottom-2">
-          <button
-            onClick={handleSideBar}
-            className="w-12 h-12 p-0 transition duration-200 ease-in bg-red-600 rounded-full shadow hover:bg-blue-700 active:shadow-lg mouse focus:outline-none"
+      </div>
+      <div className="absolute right-5 bottom-5">
+        <button
+          onClick={handleSideBar}
+          className="w-12 h-12 p-0 transition duration-200 ease-in bg-red-600 rounded-full shadow hover:bg-blue-700 active:shadow-lg mouse focus:outline-none"
+        >
+          <svg
+            viewBox="0 0 20 20"
+            enableBackground="new 0 0 20 20"
+            className="inline-block w-6 h-6"
           >
-            <svg
-              viewBox="0 0 20 20"
-              enableBackground="new 0 0 20 20"
-              className="inline-block w-6 h-6"
-            >
-              <path
-                fill="#FFFFFF"
-                d="M16,10c0,0.553-0.048,1-0.601,1H11v4.399C11,15.951,10.553,16,10,16c-0.553,0-1-0.049-1-0.601V11H4.601
+            <path
+              fill="#FFFFFF"
+              d="M16,10c0,0.553-0.048,1-0.601,1H11v4.399C11,15.951,10.553,16,10,16c-0.553,0-1-0.049-1-0.601V11H4.601
                                     C4.049,11,4,10.553,4,10c0-0.553,0.049-1,0.601-1H9V4.601C9,4.048,9.447,4,10,4c0.553,0,1,0.048,1,0.601V9h4.399
                                     C15.952,9,16,9.447,16,10z"
-              />
-            </svg>
-          </button>
-        </div>
+            />
+          </svg>
+        </button>
       </div>
     </div>
   );

@@ -83,7 +83,7 @@ function StopWatch() {
   console.log(laps);
 
   return (
-    <div className="relative h-full">
+    <div className="relative min-h-full">
       <div className="h-98">
         <div className="flex flex-col items-center justify-center px-4 py-2 mx-auto">
           <div className="w-5/6 h-24 p-2 my-3 border-2 border-gray-500 border-solid rounded-lg">
@@ -108,7 +108,7 @@ function StopWatch() {
             </div>
           </div>
 
-          <div className="flex flex-col items-center h-56 px-4 py-2 mx-auto my-3 overflow-y-auto">
+          <div className="flex flex-col items-center h-full px-4 py-2 mx-auto my-3 overflow-y-auto">
             {laps.map((t, index) => {
               return (
                 <AddStopWatch
