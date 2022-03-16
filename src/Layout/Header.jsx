@@ -1,7 +1,8 @@
 import React from "react";
+import { useStore } from "../store/store";
 
 function Header() {
-  const displayDelete = "";
+  const { showDelete, toggleShowDelete } = useStore();
 
   return (
     <div className="flex flex-row items-center justify-between px-4 py-10 text-xl">
@@ -16,7 +17,7 @@ function Header() {
           <div className="absolute top-0 right-0 z-20 hidden h-auto p-4 bg-gray-700 rounded-lg w-28 group-hover:block">
             <div className="grid grid-cols-1 grid-rows-2 gap-2 p-1">
               <button
-                onClick={displayDelete}
+                onClick={() => toggleShowDelete()}
                 className="p-1 text-sm font-semibold hover:bg-gray-500"
                 href="/"
               >

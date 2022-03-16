@@ -1,7 +1,9 @@
 import React, { useState } from "react";
+import { useStore } from "../store/store";
 
 function AddTimeZone(props) {
-  const { name, time, weather, id, showDelete, handleDelete, cityList } = props;
+  const { name, time, weather, id, handleDelete, cityList } = props;
+  const { showDelete } = useStore();
 
   let newWeather = "";
 
@@ -41,11 +43,13 @@ function AddTimeZone(props) {
           <i className={`fas fa-${newWeather}`}></i>
         </div>
 
-        <div className="text-lg w-1/8">
-          <button onClick={() => handleDelete(id)}>
-            <i className="fas fa-trash-alt"></i>
-          </button>
-        </div>
+        {showDelete && (
+          <div className="text-lg w-1/8">
+            <button onClick={() => handleDelete(id)}>
+              <i className="fas fa-trash-alt"></i>
+            </button>
+          </div>
+        )}
       </div>
     </div>
   );

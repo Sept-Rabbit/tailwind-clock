@@ -1,7 +1,9 @@
 import React, { useState, useRef, useEffect } from "react";
+import { useStore } from "../store/store";
 
 function AddTimer(props) {
-  const { id, c, showDelete, handleDelete } = props;
+  const { id, c, handleDelete } = props;
+  const { showDelete } = useStore();
   // const [second, setSecond] = useState(s);
   // const [minute, setMinute] = useState(m);
   const [isActive, setIsActive] = useState(false);
@@ -14,7 +16,6 @@ function AddTimer(props) {
 
   secondsToDisplay = twoDigits(secondsToDisplay);
   minutesToDisplay = twoDigits(minutesToDisplay);
-  console.log(secondsToDisplay, minutesToDisplay);
 
   // useEffect(() => {
   //   let intervalId;
@@ -103,11 +104,13 @@ function AddTimer(props) {
         </button>
       </div>
 
-      <div className="absolute top-0 ml-5 text-lg right-2 w-1/8">
-        <button onClick={() => handleDelete(id)}>
-          <i className="fas fa-trash-alt"></i>
-        </button>
-      </div>
+      {showDelete && (
+        <div className="absolute top-0 ml-5 text-lg right-2 w-1/8">
+          <button onClick={() => handleDelete(id)}>
+            <i className="fas fa-trash-alt"></i>
+          </button>
+        </div>
+      )}
     </div>
   );
 }

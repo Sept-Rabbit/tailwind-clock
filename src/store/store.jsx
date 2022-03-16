@@ -1,8 +1,9 @@
 import create from "zustand";
 
 export const useStore = create((set) => ({
-    displayDelete: (showDelete) =>  set(() => ({
-        setShowDelete(!showDelete);
-      }))
-  }));
-  
+  showDelete: false,
+  toggleShowDelete: () =>
+    set((state) => ({
+      showDelete: !state.showDelete,
+    })),
+}));

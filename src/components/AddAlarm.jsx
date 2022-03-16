@@ -1,8 +1,10 @@
 import React, { useState } from "react";
 import ToggleButton from "./ToggleButton";
+import { useStore } from "../store/store";
 
 function AddAlarm(props) {
-  const { id, alarm, showDelete, handleDelete } = props;
+  const { id, alarm, handleDelete } = props;
+  const { showDelete } = useStore();
 
   const [toggle, setToggle] = useState("-translate-x-full");
   const [sideBar, setSideBar] = useState(true);
@@ -67,11 +69,13 @@ function AddAlarm(props) {
         <div className="flex items-center">
           <ToggleButton />
 
-          <div className="ml-5 text-lg w-1/8 ">
-            <button onClick={() => handleDelete(id)}>
-              <i className="fas fa-trash-alt"></i>
-            </button>
-          </div>
+          {showDelete && (
+            <div className="ml-5 text-lg w-1/8 ">
+              <button onClick={() => handleDelete(id)}>
+                <i className="fas fa-trash-alt"></i>
+              </button>
+            </div>
+          )}
         </div>
       </div>
 
