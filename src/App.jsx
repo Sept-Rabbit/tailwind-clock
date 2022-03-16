@@ -8,7 +8,7 @@ import Timer from "./pages/Timer";
 
 function App() {
   return (
-    <div className="font-sans bg-white">
+    <div className="h-screen font-sans bg-white">
       <Layout>
         <Switch>
           <Route path="/" exact>

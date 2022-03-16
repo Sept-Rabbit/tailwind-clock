@@ -1,5 +1,4 @@
 import React, { useState, useEffect, useRef } from "react";
-import StopWatchHeader from "../components/TimerHeader";
 import AddStopWatch from "../components/AddStopWatch";
 
 function StopWatch() {
@@ -85,13 +84,10 @@ function StopWatch() {
 
   return (
     <div className="relative h-full">
-      <header>
-        <StopWatchHeader />
-      </header>
       <div className="h-98">
-        <div className="items-center mx-auto mx-4 px-4 py-2 flex flex-col justify-center">
-          <div className="my-3 w-5/6 h-24 p-2 rounded-lg border-2 border-solid border-gray-500">
-            <div className="text-2xl grid grid-cols-5 w-48 mx-auto text-center">
+        <div className="flex flex-col items-center justify-center px-4 py-2 mx-auto">
+          <div className="w-5/6 h-24 p-2 my-3 border-2 border-gray-500 border-solid rounded-lg">
+            <div className="grid w-48 grid-cols-5 mx-auto text-2xl text-center">
               <div>{timer.minute}</div> : <div>{timer.second}</div> :
               <div>{timer.misecond}</div>
             </div>
@@ -112,7 +108,7 @@ function StopWatch() {
             </div>
           </div>
 
-          <div className="overflow-y-auto h-56 items-center my-3 mx-auto mx-4 px-4 py-2 flex flex-col">
+          <div className="flex flex-col items-center h-56 px-4 py-2 mx-auto my-3 overflow-y-auto">
             {laps.map((t, index) => {
               return (
                 <AddStopWatch

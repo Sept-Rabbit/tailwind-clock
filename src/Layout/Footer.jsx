@@ -45,8 +45,8 @@ function Footer() {
   };
 
   return (
-    <div className="flex flex-row font-sans justify-around focus:outline-none py-4 focus:bg-gray-600">
-      <div className="hover:bg-gray-600 text-base p-2">
+    <div className="flex flex-row justify-around flex-none font-sans focus:outline-none focus:bg-gray-600">
+      <div className="p-2 text-base hover:bg-gray-600">
         <button
           onClick={handleAlarmClick}
           className={`${alarmActive} flex-col flex justify-center text-center items-center`}
@@ -55,7 +55,7 @@ function Footer() {
           <span className="w-20">鬧鐘</span>
         </button>
       </div>
-      <div className="hover:bg-gray-600 text-center text-base p-2">
+      <div className="p-2 text-base text-center hover:bg-gray-600">
         <button
           onClick={handleTimeZoneClick}
           className={`${timezoneActive} flex-col flex justify-center text-center items-center`}
@@ -64,7 +64,7 @@ function Footer() {
           <span className="w-20">世界時鐘</span>
         </button>
       </div>
-      <div className="hover:bg-gray-600 text-center text-base p-2">
+      <div className="p-2 text-base text-center hover:bg-gray-600">
         <button
           onClick={handleStopWatchClick}
           className={`${stopWatchActive} flex-col flex justify-center text-center items-center`}
@@ -73,7 +73,7 @@ function Footer() {
           <span className="w-20">碼表</span>
         </button>
       </div>
-      <div className="hover:bg-gray-600 text-center text-base p-2">
+      <div className="p-2 text-base text-center hover:bg-gray-600">
         <button
           onClick={handleTimerClick}
           className={`${timerActive} flex-col flex justify-center text-center items-center`}

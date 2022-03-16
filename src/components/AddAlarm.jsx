@@ -51,41 +51,40 @@ function AddAlarm(props) {
   };
 
   return (
-    <div className="items-center rounded-lg my-3 mx-4 px-4 py-2 border-2 border-solid border-gray-500">
-      <div className="flex flex-row w-full justify-start items-center">
+    <div className="items-center px-4 py-2 mx-4 my-3 border-2 border-gray-500 border-solid rounded-lg">
+      <div className="flex flex-row items-center justify-start w-full">
         <div className="flex items-center" onClick={handleSideBar}>
-          <p className="text-md w-16">
+          <p className="w-16 text-md">
             {alarm.alarmHour} : {alarm.alarmMin}
           </p>{" "}
-          <span className="pt-2 w-5 text-xs ml-1 mr-10">
+          <span className="w-5 pt-2 ml-1 mr-10 text-xs">
             {alarm.alarmSection}
           </span>
-          <p className="text-sm w-12 mr-12">
+          <p className="w-12 mr-12 text-sm">
             {alarm.repeat === "Never" ? null : alarm.repeat}
           </p>
         </div>
         <div className="flex items-center">
           <ToggleButton />
-          {showDelete ? (
-            <div className="text-lg w-1/8 ml-5 ">
-              <button onClick={() => handleDelete(id)}>
-                <i className="fas fa-trash-alt"></i>
-              </button>
-            </div>
-          ) : null}
+
+          <div className="ml-5 text-lg w-1/8 ">
+            <button onClick={() => handleDelete(id)}>
+              <i className="fas fa-trash-alt"></i>
+            </button>
+          </div>
         </div>
       </div>
 
       <div
         className={`px-4 absolute left-0 bottom-16 z-50 ${toggle} transform transition duration-200 ease-in-out`}
       >
-        <div className="left-10 h-60 w-52 p-4 rounded-lg flex flex-col bg-gray-800">
-          <label className="text-sm mb-1">Time:</label>
-          <div className="flex my-1 bg-white h-10 rounded-lg justify-evenly">
+        <div className="flex flex-col p-4 bg-gray-800 rounded-lg left-10 h-60 w-52">
+          <label className="mb-1 text-sm">Time:</label>
+          <div className="flex h-10 my-1 bg-white rounded-lg justify-evenly">
             <select
               onChange={onHourChange}
               name="hour"
-              className="bg-transparent text-gray-900 text-sm appearance-none outline-none"
+              className="text-sm text-gray-900 bg-transparent outline-none appearance-none"
               value={hourInput}
             >
               <option value="00">00</option>
@@ -102,11 +101,11 @@ function AddAlarm(props) {
               <option value="11">11</option>
               <option value="12">12</option>
             </select>
-            <span className="text-sm mr-3 text-gray-900"> : </span>
+            <span className="mr-3 text-sm text-gray-900"> : </span>
             <select
               onChange={onMinChange}
               name="minute"
-              className="bg-transparent text-sm text-gray-900 appearance-none outline-none mr-4"
+              className="mr-4 text-sm text-gray-900 bg-transparent outline-none appearance-none"
               value={minInput}
             >
               <option value="00">00</option>
@@ -123,10 +122,10 @@ function AddAlarm(props) {
               <option value="55">55</option>
             </select>
           </div>
-          <div className="h-10 flex flex-col">
-            <label className="text-sm my-1">AM/PM:</label>
+          <div className="flex flex-col h-10">
+            <label className="my-1 text-sm">AM/PM:</label>
             <select
-              className="py-1 px-2 my-1 text-gray-900 text-xs rounded-md"
+              className="px-2 py-1 my-1 text-xs text-gray-900 rounded-md"
               onChange={onSectionChange}
               value={sectionInput}
             >
@@ -134,10 +133,10 @@ function AddAlarm(props) {
               <option value="PM">PM</option>
             </select>
           </div>
-          <div className="h-10 flex flex-col mt-6 mb-2">
+          <div className="flex flex-col h-10 mt-6 mb-2">
             <label className="text-sm">Frequency:</label>
             <select
-              className="px-2 py-1 my-1 text-gray-900 text-xs rounded-md"
+              className="px-2 py-1 my-1 text-xs text-gray-900 rounded-md"
               onChange={onRepeatChange}
               value={repeatInput}
             >
@@ -153,7 +152,7 @@ function AddAlarm(props) {
                 editAlarm();
                 handleSideBar();
               }}
-              className="my-2 w-16 h-7 items-center justify-center flex text-center mx-auto font-bold uppercase border-white border-2 rounded-lg p-2 text-xs text-white"
+              className="flex items-center justify-center w-16 p-2 mx-auto my-2 text-xs font-bold text-center text-white uppercase border-2 border-white rounded-lg h-7"
               type="text"
             >
               Edit
@@ -162,7 +161,7 @@ function AddAlarm(props) {
               onClick={() => {
                 handleSideBar();
               }}
-              className="my-2 w-16 h-7 items-center justify-center flex text-center mx-auto font-bold uppercase border-white border-2 rounded-lg p-2 text-xs text-white"
+              className="flex items-center justify-center w-16 p-2 mx-auto my-2 text-xs font-bold text-center text-white uppercase border-2 border-white rounded-lg h-7"
               type="text"
             >
               Cancel

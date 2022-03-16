@@ -1,10 +1,14 @@
 import React from "react";
 import Footer from "./Footer";
+import Header from "./Header";
 
 function Layout(props) {
   return (
-    <div className="bg-gray-900 w-96 mx-auto my-12 rounded-lg p-2 text-white font-bold">
-      <main className="h-full">{props.children}</main>
+    <div className="h-screen mx-auto font-bold text-white bg-gray-900 rounded-lg sm:w-full lg:w-96">
+      <header>
+        <Header />
+      </header>
+      <main>{props.children}</main>
       <footer>
         <Footer />
       </footer>

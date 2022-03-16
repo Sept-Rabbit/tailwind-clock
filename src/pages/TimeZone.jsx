@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import AddTimeZone from "../components/AddTimeZone";
 import { keys } from "../../key";
-import TimeZoneHeader from "../components/TimeZoneHeader";
 
 function TimeZone() {
   const [cityList, setCityList] = useState([]);
@@ -101,18 +100,15 @@ function TimeZone() {
 
   return (
     <div className="min-h-full">
-      <header>
-        <TimeZoneHeader displayDelete={displayDelete} />
-      </header>
       <div className="relative h-98">
         <img
           src="https://upload.cc/i1/2021/07/06/CkRzLm.png"
-          className="h-36 w-full bg-cover bg-no-repeat bg-top bg-timezone-image"
+          className="w-full bg-top bg-no-repeat bg-cover h-36 bg-timezone-image"
         />
 
         {/* ----- Display Timezone -----*/}
 
-        <div className="px-4 mt-5 overflow-auto h-64">
+        <div className="h-64 px-4 mt-5 overflow-auto">
           {cityList.map((c, index) => {
             return (
               <AddTimeZone
@@ -134,11 +130,11 @@ function TimeZone() {
         <div
           className={`px-4 absolute top-60 z-50 ${toggle} transform transition duration-200 ease-in-out`}
         >
-          <div className="left-10 h-32 w-52 p-4 rounded-lg flex flex-col bg-gray-800">
+          <div className="flex flex-col h-32 p-4 bg-gray-800 rounded-lg left-10 w-52">
             <label className="text-xs">Enter City in English</label>
             <input
               onChange={onChange}
-              className="rounded-lg text-xs p-1 focus:border-1 focus:bg-gray-200 focus:outline-none text-gray-900 my-3"
+              className="p-1 my-3 text-xs text-gray-900 rounded-lg focus:border-1 focus:bg-gray-200 focus:outline-none"
               type="text"
               value={searchKey}
             ></input>
@@ -147,7 +143,7 @@ function TimeZone() {
                 getSearchCityInfo(searchKey);
                 handleAddCity();
               }}
-              className="w-16 h-7 items-center justify-center flex text-center mx-auto font-bold uppercase border-white border-2 rounded-lg p-2 text-xs text-white"
+              className="flex items-center justify-center w-16 p-2 mx-auto text-xs font-bold text-center text-white uppercase border-2 border-white rounded-lg h-7"
               type="text"
             >
               Add
@@ -160,12 +156,12 @@ function TimeZone() {
         <div className="absolute right-5 bottom-2">
           <button
             onClick={handleAddCity}
-            className="p-0 w-12 h-12 bg-red-600 rounded-full hover:bg-blue-700 active:shadow-lg mouse shadow transition ease-in duration-200 focus:outline-none"
+            className="w-12 h-12 p-0 transition duration-200 ease-in bg-red-600 rounded-full shadow hover:bg-blue-700 active:shadow-lg mouse focus:outline-none"
           >
             <svg
               viewBox="0 0 20 20"
               enableBackground="new 0 0 20 20"
-              className="w-6 h-6 inline-block"
+              className="inline-block w-6 h-6"
             >
               <path
                 fill="#FFFFFF"
